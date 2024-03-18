@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Vector3 dir;
+    [SerializeField] private float speed;
+    private Transform modelTransform;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        modelTransform = transform.Find("model");
+    }
     void Update()
     {
-        
+        modelTransform.transform.forward = dir;
+        transform.Translate(dir * speed * Time.deltaTime);
+    }
+
+    public void Move(Vector2 newDir)
+    {
+        dir = new Vector3(newDir.x, 0, newDir.y);
     }
 }
