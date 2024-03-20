@@ -6,16 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     private Vector3 dir;
     [SerializeField] private float speed;
-    private Transform modelTransform;
-
+    [SerializeField] private float rotationSpeed;
+    private CharacterController characterController;
     private void Start()
     {
-        modelTransform = transform.Find("model");
+        characterController = GetComponent<CharacterController>();
     }
     void Update()
     {
-        modelTransform.transform.forward = dir;
-        transform.Translate(dir * speed * Time.deltaTime);
+        transform.position += dir * speed * Time.deltaTime;
+
+        if (dir != Vector3.zero)
+            transform.forward = Vector3.Lerp(transform.forward, dir, rotationSpeed * Time.deltaTime);
     }
 
     public void Move(Vector2 newDir)
