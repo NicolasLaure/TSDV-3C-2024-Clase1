@@ -8,22 +8,23 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 dir;
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
-    private CharacterController characterController;
+    private Rigidbody rb;
 
     public event EventHandler CharacterMove;
     public event EventHandler CharacterStop;
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
-        transform.position += dir * speed * Time.deltaTime;
-
-        if (dir != Vector3.zero)
-            transform.forward = Vector3.Lerp(transform.forward, dir, rotationSpeed * Time.deltaTime);
+        //if (dir != Vector3.zero)
+        //    transform.forward = Vector3.Lerp(transform.forward, dir, rotationSpeed * Time.deltaTime);
     }
-
+    private void FixedUpdate()
+    {
+        rb.AddRelativeForce(dir * speed, ForceMode.Acceleration);
+    }
     public void Move(Vector2 newDir)
     {
         dir = new Vector3(newDir.x, 0, newDir.y);

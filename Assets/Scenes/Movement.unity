@@ -420,7 +420,7 @@ Transform:
   m_GameObject: {fileID: 463797961}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14176418, y: -0, z: -0, w: 0.98990047}
-  m_LocalPosition: {x: 0, y: 5.91, z: -13.67}
+  m_LocalPosition: {x: 0, y: 4, z: -9.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 662103042}
-  offset: {x: 0, y: 5.91, z: -13.67}
+  offset: {x: 0, y: 4, z: -9.61}
   rotationSpeed: 8
   followSpeed: 8
 --- !u!1 &662103038
@@ -452,7 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662103042}
   - component: {fileID: 662103039}
-  - component: {fileID: 662103045}
+  - component: {fileID: 662103047}
   - component: {fileID: 662103044}
   - component: {fileID: 662103043}
   - component: {fileID: 662103046}
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8a4215ec4ace2499ffd4e612f7637e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 10
   rotationSpeed: 5
 --- !u!114 &662103044
 MonoBehaviour:
@@ -528,32 +528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb5234eb4005ff478572c9ab158064b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!143 &662103045
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662103038}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &662103046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,6 +541,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4251777830496578123}
+--- !u!54 &662103047
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662103038}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &1153170089
 GameObject:
   m_ObjectHideFlags: 0
