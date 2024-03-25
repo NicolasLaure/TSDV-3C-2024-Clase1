@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
     private CharacterController characterController;
+
+    public event EventHandler CharacterMove;
+    public event EventHandler CharacterStop;
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -23,5 +27,9 @@ public class PlayerMovement : MonoBehaviour
     public void Move(Vector2 newDir)
     {
         dir = new Vector3(newDir.x, 0, newDir.y);
+        if (newDir == Vector2.zero)
+            CharacterStop?.Invoke(this, EventArgs.Empty);
+        else
+            CharacterMove?.Invoke(this, EventArgs.Empty);
     }
 }
