@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 dir;
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
+    private Quaternion targetRotation;
     private Rigidbody rb;
 
     public event EventHandler CharacterMove;
@@ -18,19 +19,23 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        //if (dir != Vector3.zero)
-        //    transform.forward = Vector3.Lerp(transform.forward, dir, rotationSpeed * Time.deltaTime);
+        //if (transform.rotation != targetRotation)
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
     private void FixedUpdate()
     {
-        rb.AddRelativeForce(dir * speed, ForceMode.Acceleration);
+        rb.AddForce(dir * speed, ForceMode.Acceleration);
     }
     public void Move(Vector2 newDir)
     {
-        dir = new Vector3(newDir.x, 0, newDir.y);
+        dir = Camera.main.transform.TransformDirection(new Vector3(newDir.x, 0, newDir.y));
         if (newDir == Vector2.zero)
             CharacterStop?.Invoke(this, EventArgs.Empty);
         else
             CharacterMove?.Invoke(this, EventArgs.Empty);
+    }
+    public void Rotate()
+    {
+
     }
 }
