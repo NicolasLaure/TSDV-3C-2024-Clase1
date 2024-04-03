@@ -19,8 +19,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        //if (transform.rotation != targetRotation)
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        RotateTowardsDirection();
     }
     private void FixedUpdate()
     {
@@ -29,13 +28,15 @@ public class PlayerMovement : MonoBehaviour
     public void Move(Vector2 newDir)
     {
         dir = Camera.main.transform.TransformDirection(new Vector3(newDir.x, 0, newDir.y));
-        if (newDir == Vector2.zero)
+        dir.y = 0;
+
+        if (dir == Vector3.zero)
             CharacterStop?.Invoke(this, EventArgs.Empty);
         else
             CharacterMove?.Invoke(this, EventArgs.Empty);
     }
-    public void Rotate()
+    public void RotateTowardsDirection()
     {
-
+        transform.Rotate(transform.up, Vector3.SignedAngle(transform.forward, dir, transform.up) * rotationSpeed * Time.deltaTime);
     }
 }

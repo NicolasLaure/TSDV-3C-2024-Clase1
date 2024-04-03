@@ -14,9 +14,11 @@ public class FollowTarget : MonoBehaviour
     {
         FixCameraRotation();
     }
-    void LateUpdate()
+    void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.TransformPoint(offset), Time.deltaTime * followSpeed);
+
+        targetRotation = target.rotation * Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
         if (transform.rotation != targetRotation)
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
